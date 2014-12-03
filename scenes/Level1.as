@@ -2,6 +2,7 @@
 {
 	import flash.display.MovieClip;
 	import flash.events.Event;
+	import game.SnakePiece;
 	
 	public class Level1 extends MovieClip
 	{
