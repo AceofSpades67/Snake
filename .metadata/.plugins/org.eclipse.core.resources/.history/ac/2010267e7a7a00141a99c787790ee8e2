@@ -1,0 +1,12 @@
+package
+{
+	import flash.display.Sprite;
+	
+	public class Root extends Sprite
+	{
+		public function Root()
+		{
+			
+		}
+	}
+}

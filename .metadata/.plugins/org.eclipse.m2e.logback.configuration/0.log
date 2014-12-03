@@ -1,0 +1,6 @@
+2014-12-02 15:24:07,826 [Worker-0] INFO  org.mortbay.log - Logging to Logger[org.mortbay.log] via org.mortbay.log.Slf4jLog
+2014-12-02 15:24:07,866 [Worker-0] INFO  org.mortbay.log - jetty-6.1.x
+2014-12-02 15:24:07,890 [Worker-0] INFO  org.mortbay.log - Started SelectChannelConnector@0.0.0.0:1256
+2014-12-02 15:24:33,224 [main] INFO  org.mortbay.log - Logging to Logger[org.mortbay.log] via org.mortbay.log.Slf4jLog
+2014-12-02 15:24:33,263 [main] INFO  org.mortbay.log - jetty-6.1.x
+2014-12-02 15:24:33,286 [main] INFO  org.mortbay.log - Started SelectChannelConnector@0.0.0.0:1263
