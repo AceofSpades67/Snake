@@ -17,9 +17,9 @@
 		
 		public function Root()
 		{
+			stage.focus = stage;
 			instance = this;
 			theStage = stage;
-			
 			loadScene("Main Menu");
 		}
 		
