@@ -15,7 +15,7 @@
 	{
 		trace("start");
 		// speed, naturally  
-		var speed:Number = 7;  
+		var speed:Number = 4;  
 		// velocity along x  
 		var vx:Number = speed;  
 		// vlocity along y  

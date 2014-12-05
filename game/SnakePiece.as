@@ -7,11 +7,13 @@
 	import flash.geom.Point;
 	import scenes.Level1;
 	import flash.ui.Keyboard;
+	import flash.display.DisplayObject;
+	import flash.geom.Rectangle;
 	
 	public class SnakePiece extends MovieClip 
 	{
 		private var velocity : Point = new Point();
-		private var speed : Number = 7.0;
+		private var speed : Number = 5.0;
 		
 		public function SnakePiece()
 		{
@@ -28,6 +30,7 @@
 		
 		private function update(eventData : Event) : void
 		{
+			hitTestPlayerVsApple(scenes.Level1.apple);
 			this.x += velocity.x;
 			this.y += velocity.y;
 			//trace("velocity is " + velocity);
@@ -88,6 +91,33 @@
 				trace("An unknown key was released");
 				break;
 			}
+		}
+		
+		private function hitTestPlayerVsApple(otherCollider : DisplayObject) : Boolean
+		{
+			var bounds : Rectangle = this.getBounds(root);
+			
+			if(otherCollider.hitTestPoint(bounds.left, bounds.top, true))
+			{
+				scenes.Level1.level1.spawnApple();
+				return true;
+			}
+			else if(otherCollider.hitTestPoint(bounds.right, bounds.top, true))
+			{
+				scenes.Level1.level1.spawnApple();
+				return true;
+			}
+			else if(otherCollider.hitTestPoint(bounds.left, bounds.bottom, true))
+			{
+				scenes.Level1.level1.spawnApple();
+				return true;
+			}
+			else if(otherCollider.hitTestPoint(bounds.right, bounds.bottom, true))
+			{
+				scenes.Level1.level1.spawnApple();
+				return true;
+			}
+			return false;
 		}
 	}
 	
