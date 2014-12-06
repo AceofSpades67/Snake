@@ -11,6 +11,7 @@
 		public function Level2()
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, awake);
+			this.addEventListener(Event.REMOVED_FROM_STAGE, deinitialize);
 		}
 		
 		private function awake(eventData : Event) : void
@@ -19,6 +20,7 @@
 			player.x = stage.stageWidth / 2;
 			player.y = stage.stageHeight / 2;
 			this.addChild(snakeHead);
+			
 			
 		}
 	}
