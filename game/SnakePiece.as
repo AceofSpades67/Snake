@@ -16,7 +16,7 @@
 		private var speed : Number = 5.0;
 		private var frameCounter = 0;
 		public  var movingLeft   = false;
-		public  var movingRight  = false;
+		public  var movingRight  = true;
 		public  var movingDown   = false;
 		public  var movingUp     = false;
 		public static var snakePiece;
@@ -33,7 +33,7 @@
 			addEventListener(Event.ENTER_FRAME, update);
 			Root.theStage.addEventListener(KeyboardEvent.KEY_DOWN, onGameKeyPressed);
 			Root.theStage.addEventListener(KeyboardEvent.KEY_UP, onGameKeyReleased);
-			scenes.Level1.level1.spawnSnakePiece();
+			
 		}
 		
 		private function update(eventData : Event) : void

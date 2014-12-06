@@ -5,6 +5,7 @@
 	import game.SnakePiece;
 	import game.Apple;
 	import flash.geom.Point;
+	import game.SnakeBody;
 	
 	public class Level1 extends MovieClip
 	{
@@ -15,7 +16,7 @@
 		
 		public var snakePosArray    : Array = [];
 		public var snakePiecesArray : Array = [];
-		public var numberOfPieces   : int = -1;
+		public var numberOfPieces   : int = 0;
 
 		public function Level1() 
 		{
@@ -26,14 +27,16 @@
 		{
 			spawnApple();
 			
+			level1 = this;
+			
 			snakeHead = new SnakePiece();
 			snakeHead.x = stage.stageWidth / 2;
 			snakeHead.y = stage.stageHeight / 2;
 			this.addChild(snakeHead);
+			Level1.level1.spawnSnakePiece();
+			//snakePosArray.push(new Point(snakeHead.x, snakeHead.y));
 			
-			snakePosArray.push(new Point(snakeHead.x, snakeHead.y));
 			
-			level1 = this;
 		}
 		
 		public function spawnApple() : void
@@ -52,19 +55,29 @@
 		{
 			var posToSpawn   : int = 0;
 			var whereToSpawn : Point = new Point(0, 0);
-			numberOfPieces += 1;
-			posToSpawn = numberOfPieces * 15;
 			
-			snakePiecesArray.push(new SnakePiece());
+			if(numberOfPieces != 0)
+			{
+				posToSpawn = numberOfPieces * 15;
+			}
+			else
+			{
+				posToSpawn = 15;
+			}
+			
+			
+			
+			snakePiecesArray.push(new SnakeBody());
+			
 			if(game.SnakePiece.snakePiece.movingLeft == true)
 			{
-				whereToSpawn = new Point(game.SnakePiece.snakePiece.x - posToSpawn, game.SnakePiece.snakePiece.y);
+				whereToSpawn = new Point(game.SnakePiece.snakePiece.x + posToSpawn, game.SnakePiece.snakePiece.y);
 				snakePiecesArray[numberOfPieces].x = whereToSpawn.x;
 				snakePiecesArray[numberOfPieces].y = whereToSpawn.y;
 			}
 			if(game.SnakePiece.snakePiece.movingRight == true)
 			{
-				whereToSpawn = new Point(game.SnakePiece.snakePiece.x + posToSpawn, game.SnakePiece.snakePiece.y);
+				whereToSpawn = new Point(game.SnakePiece.snakePiece.x - posToSpawn, game.SnakePiece.snakePiece.y);
 				snakePiecesArray[numberOfPieces].x = whereToSpawn.x;
 				snakePiecesArray[numberOfPieces].y = whereToSpawn.y;
 			}
@@ -80,7 +93,9 @@
 				snakePiecesArray[numberOfPieces].x = whereToSpawn.x;
 				snakePiecesArray[numberOfPieces].y = whereToSpawn.y;
 			}
+			trace(whereToSpawn.toString());
 			this.addChild(snakePiecesArray[numberOfPieces]);
+			numberOfPieces += 1;
 		}
 		
 		public function updateSnakePos(eventData : Point) : void
