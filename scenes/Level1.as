@@ -65,31 +65,36 @@
 		
 		public function spawnSnakePiece() : void
 		{
-			var posToSpawn   : int = 0;
+			var posToSpawn   : int = 10;
 			var whereToSpawn : Point = new Point(0, 0);
-			numberOfPieces += 1;
+			
 			//trace(numberOfPieces.toString());
+			numberOfPieces += 1;
+			
+			
+			
+			
 			if(numberOfPieces != 0)
 			{
-				posToSpawn = numberOfPieces * 15;
+				posToSpawn = numberOfPieces * 10;
 			}
 			else
 			{
 				if(game.SnakePiece.snakePiece.movingLeft == true)
 				{
-					posToSpawn = 15;
+					posToSpawn = 10;
 				}
 				if(game.SnakePiece.snakePiece.movingRight == true)
 				{
-					posToSpawn = -15;
+					posToSpawn = -10;
 				}
 				if(game.SnakePiece.snakePiece.movingDown == true)
 				{
-					posToSpawn = 15;
+					posToSpawn = 10;
 				}
 				if(game.SnakePiece.snakePiece.movingUp == true)
 				{
-					posToSpawn = -15;
+					posToSpawn = -10;
 				}
 			}
 			
@@ -97,31 +102,33 @@
 			//trace(lastTurnPos);
 			
 			snakePiecesArray.push(new SnakeBody());
+			//trace(snakePiecesArray[numberOfPieces].movingLeft);
 			
-			if(game.SnakePiece.snakePiece.movingLeft == true)
+			if(snakePiecesArray[numberOfPieces].movingLeft == true)
 			{
 				whereToSpawn = new Point(game.SnakePiece.snakePiece.x + posToSpawn, game.SnakePiece.snakePiece.y);
 				snakePiecesArray[numberOfPieces].x = whereToSpawn.x;
 				snakePiecesArray[numberOfPieces].y = whereToSpawn.y;
 			}
-			if(game.SnakePiece.snakePiece.movingRight == true)
+			if(snakePiecesArray[numberOfPieces].movingRight == true)
 			{
 				whereToSpawn = new Point(game.SnakePiece.snakePiece.x - posToSpawn, game.SnakePiece.snakePiece.y);
 				snakePiecesArray[numberOfPieces].x = whereToSpawn.x;
 				snakePiecesArray[numberOfPieces].y = whereToSpawn.y;
 			}
-			if(game.SnakePiece.snakePiece.movingDown == true)
+			if(snakePiecesArray[numberOfPieces].movingDown == true)
 			{
 				whereToSpawn = new Point(game.SnakePiece.snakePiece.x, game.SnakePiece.snakePiece.y - posToSpawn);
 				snakePiecesArray[numberOfPieces].x = whereToSpawn.x;
 				snakePiecesArray[numberOfPieces].y = whereToSpawn.y;
 			}
-			if(game.SnakePiece.snakePiece.movingUp == true)
+			if(snakePiecesArray[numberOfPieces].movingUp == true)
 			{
 				whereToSpawn = new Point(game.SnakePiece.snakePiece.x, game.SnakePiece.snakePiece.y + posToSpawn);
 				snakePiecesArray[numberOfPieces].x = whereToSpawn.x;
 				snakePiecesArray[numberOfPieces].y = whereToSpawn.y;
 			}
+			
 			this.addChild(snakePiecesArray[numberOfPieces]);
 			
 		}
