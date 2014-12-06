@@ -12,11 +12,13 @@
 	
 	public class Root extends Sprite 
 	{
-			public static var theStage = null;
-			//SINGLETON
-			public static var instance : Root = null;
+		public static var theStage = null;
+		//SINGLETON
+		public static var instance : Root = null;
 		
-			public var currentScene : MovieClip  = null;
+		public var currentScene : MovieClip  = null;
+		
+		public var score : int = 0;
 		
 		
 		public function Root()
@@ -29,26 +31,23 @@
 		
 		
 		// Baqir's Script for Scoring Below:
-		/* may need EDITS for refinement to suit SNAKE
+		// may need EDITS for refinement to suit SNAKE
 		
-		public var txt:TextField;
-		public var score:uint = 0;
+		
 
 		public function Test()
 		{
 			//creating my text field
-			txt = new TextField();
-
-			addChild(txt);
+			
 		}
 
-		public function handleClick(event:MouseEvent):void
+		public function addScore():void
 		{
 			//adding 10 to score
 			score += 10;
 
 			//setting the txt text field to score
-			txt.text = score.toString();
+			Level1.level1.txt.text = score.toString();
 		}
 		// End of Scoring Script */
 		

@@ -140,6 +140,7 @@
 			
 			if(otherCollider.hitTestPoint(bounds.left, bounds.top, true))
 			{
+				Root.instance.addScore();
 				scenes.Level1.level1.spawnApple();
 				scenes.Level1.level1.spawnSnakePiece();
 				scenes.Level1.level1.updateSnakePos(new Point(this.x, this.y));
@@ -147,6 +148,7 @@
 			}
 			else if(otherCollider.hitTestPoint(bounds.right, bounds.top, true))
 			{
+				Root.instance.addScore();
 				scenes.Level1.level1.spawnApple();
 				scenes.Level1.level1.spawnSnakePiece();
 				scenes.Level1.level1.updateSnakePos(new Point(this.x, this.y));
@@ -154,6 +156,7 @@
 			}
 			else if(otherCollider.hitTestPoint(bounds.left, bounds.bottom, true))
 			{
+				Root.instance.addScore();
 				scenes.Level1.level1.spawnApple();
 				scenes.Level1.level1.spawnSnakePiece();
 				scenes.Level1.level1.updateSnakePos(new Point(this.x, this.y));
@@ -161,6 +164,7 @@
 			}
 			else if(otherCollider.hitTestPoint(bounds.right, bounds.bottom, true))
 			{
+				Root.instance.addScore();
 				scenes.Level1.level1.spawnApple();
 				scenes.Level1.level1.spawnSnakePiece();
 				scenes.Level1.level1.updateSnakePos(new Point(this.x, this.y));
@@ -174,6 +178,20 @@
 				return true;
 			}
 			else if(otherCollider.hitTestPoint(bounds.width / 2, bounds.bottom, true))
+			{
+				scenes.Level1.level1.spawnApple();
+				scenes.Level1.level1.spawnSnakePiece();
+				scenes.Level1.level1.updateSnakePos(new Point(this.x, this.y));
+				return true;
+			}
+			else if(otherCollider.hitTestPoint(bounds.left, bounds.height / 2, true))
+			{
+				scenes.Level1.level1.spawnApple();
+				scenes.Level1.level1.spawnSnakePiece();
+				scenes.Level1.level1.updateSnakePos(new Point(this.x, this.y));
+				return true;
+			}
+			else if(otherCollider.hitTestPoint(bounds.right, bounds.height / 2, true))
 			{
 				scenes.Level1.level1.spawnApple();
 				scenes.Level1.level1.spawnSnakePiece();

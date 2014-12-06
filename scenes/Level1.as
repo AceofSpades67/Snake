@@ -20,6 +20,8 @@
 		public var lastTurnPos      : int   = 0;
 		public var numberOfUpdates  : int   = 0;
 		public var moveNumbersDown  : int   = 1;
+		
+		public var txt   : Text;
 
 		public function Level1() 
 		{
@@ -31,6 +33,11 @@
 			spawnApple();
 			
 			level1 = this;
+			
+			txt = new Text();
+			txt.x = 20;
+			txt.y = 15;
+			addChild(txt)
 			
 			snakeHead = new SnakePiece();
 			snakeHead.x = stage.stageWidth / 2;
