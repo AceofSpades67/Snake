@@ -3,45 +3,49 @@
 	import flash.events.Event;
 	import game.PlayButton;
 	import flash.events.MouseEvent;
+	import flash.display.MovieClip;
 	
 	public class GameOverWin extends MovieClip
 	{
-		private var gameOverWin = null;
+		private var menuBtn : MainMenuButton = null;
 
 		public function GameOverWin()
 		{
-			trace("loaded: WIN - Game Over");
+			this.addEventListener(Event.ADDED_TO_STAGE, initialize);
+			this.addEventListener(Event.REMOVED_FROM_STAGE, deinitialize);
 		}
 		
 		private function initialize(eventData : Event) : void
 		{
-			var winArt : new GameOverW;
+			var winArt = new GameOverW();
 			winArt.x = stage.stageWidth / 2;
-			winArt.y = stage.stageHeight / 2 - 50;
+			winArt.y = stage.stageHeight / 4;
 			this.addChild(winArt);
 			
-			playBtn = new PlayButton();
-			playBtn.x = stage.stageWidth / 2;
-			playBtn.y = stage.stageHeight / 2 + 50;
-			this.addChild(playBtn);
+			menuBtn = new MainMenuButton();
+			menuBtn.x = stage.stageWidth / 2;
+			menuBtn.y = stage.stageHeight / 2;
+			this.addChild(menuBtn);
 			
-			playBtn.addEventListener(MouseEvent.CLICK, onPlayBtnClick);
+			menuBtn.addEventListener(MouseEvent.CLICK, onMenuBtnClick);
 		}
 		
-		private function onPlayBtnClick(eventData : MouseEvent) : void
+		private function onMenuBtnClick(eventData : MouseEvent) : void
 		{
-			playBtn.removeEventListener(MouseEvent.CLICK, onPlayBtnClick);
+			menuBtn.removeEventListener(MouseEvent.CLICK, onMenuBtnClick);
 			
-			trace("Game Over button clicked");
+			trace("back to Main Menu from WIN");
 			
-			//load to desired scene--probably main menu (or level 1)
-			Root.loadScene("Level 1");
+			//load to desired scene from win
+			Root.instance.loadScene("Main Menu");
 		}
 		
 		private function deinitialize(eventData : Event) : void
 		{
-			trace("deinitializing GameOverWin");
-			playBtn.removeEventListener(MouseEvent.CLICK, onPlayBtnClick);
+			menuBtn.removeEventListener(MouseEvent.CLICK, onMenuBtnClick);
+			
+			this.removeEventListener(Event.ADDED_TO_STAGE, initialize);
+			this.removeEventListener(Event.REMOVED_FROM_STAGE, deinitialize);
 		}
 
 	}
