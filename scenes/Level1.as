@@ -16,7 +16,10 @@
 		
 		public var snakePosArray    : Array = [];
 		public var snakePiecesArray : Array = [];
-		public var numberOfPieces   : int = 0;
+		public var numberOfPieces   : int   = -1;
+		public var lastTurnPos      : int   = 0;
+		public var numberOfUpdates  : int   = 0;
+		public var moveNumbersDown  : int   = 1;
 
 		public function Level1() 
 		{
@@ -33,10 +36,19 @@
 			snakeHead.x = stage.stageWidth / 2;
 			snakeHead.y = stage.stageHeight / 2;
 			this.addChild(snakeHead);
-			Level1.level1.spawnSnakePiece();
+			addEventListener(Event.ENTER_FRAME, update);
+			//Level1.level1.spawnSnakePiece();
 			//snakePosArray.push(new Point(snakeHead.x, snakeHead.y));
 			
 			
+		}
+		
+		private function update(eventData : Event) : void
+		{
+			while(snakePosArray[lastTurnPos] != null)
+				{
+					lastTurnPos += 1;
+				}
 		}
 		
 		public function spawnApple() : void
@@ -55,17 +67,34 @@
 		{
 			var posToSpawn   : int = 0;
 			var whereToSpawn : Point = new Point(0, 0);
-			
+			numberOfPieces += 1;
+			//trace(numberOfPieces.toString());
 			if(numberOfPieces != 0)
 			{
 				posToSpawn = numberOfPieces * 15;
 			}
 			else
 			{
-				posToSpawn = 15;
+				if(game.SnakePiece.snakePiece.movingLeft == true)
+				{
+					posToSpawn = 15;
+				}
+				if(game.SnakePiece.snakePiece.movingRight == true)
+				{
+					posToSpawn = -15;
+				}
+				if(game.SnakePiece.snakePiece.movingDown == true)
+				{
+					posToSpawn = 15;
+				}
+				if(game.SnakePiece.snakePiece.movingUp == true)
+				{
+					posToSpawn = -15;
+				}
 			}
 			
 			
+			//trace(lastTurnPos);
 			
 			snakePiecesArray.push(new SnakeBody());
 			
@@ -93,15 +122,34 @@
 				snakePiecesArray[numberOfPieces].x = whereToSpawn.x;
 				snakePiecesArray[numberOfPieces].y = whereToSpawn.y;
 			}
-			trace(whereToSpawn.toString());
 			this.addChild(snakePiecesArray[numberOfPieces]);
-			numberOfPieces += 1;
+			
 		}
 		
 		public function updateSnakePos(eventData : Point) : void
 		{
-			snakePosArray.push(eventData);
-			trace(snakePosArray.toString());
+			moveNumbersDown = numberOfUpdates;
+			numberOfUpdates += 1;
+			snakePosArray[numberOfUpdates] = new Point(game.SnakePiece.snakePiece.x, game.SnakePiece.snakePiece.y);
+			//trace(snakePosArray[numberOfUpdates] + numberOfUpdates);
+			//trace(snakePosArray[4] + snakePosArray[5])
+			/*if(numberOfUpdates != 30)
+			{
+				numberOfUpdates += 1;
+			}
+			else if(numberOfUpdates == 30)
+			{
+				numberOfUpdates = 0;
+			}
+			
+			for(var i = 1; i < numberOfUpdates; i++)
+			{
+				
+				var newPosNumber = moveNumbersDown + 1;
+				snakePosArray[newPosNumber] = snakePosArray[moveNumbersDown];
+				moveNumbersDown -= 1;
+				trace("for");
+			}*/
 		}
 
 	}

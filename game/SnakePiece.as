@@ -12,14 +12,15 @@
 	
 	public class SnakePiece extends MovieClip 
 	{
-		private var velocity : Point = new Point();
-		private var speed : Number = 5.0;
+		public  var velocity : Point = new Point();
+		private var speed    : Number = 5.0;
 		private var frameCounter = 0;
 		public  var movingLeft   = false;
 		public  var movingRight  = true;
 		public  var movingDown   = false;
 		public  var movingUp     = false;
 		public static var snakePiece;
+		public  var currentPos   : Point = new Point();
 		
 		public function SnakePiece()
 		{
@@ -33,14 +34,17 @@
 			addEventListener(Event.ENTER_FRAME, update);
 			Root.theStage.addEventListener(KeyboardEvent.KEY_DOWN, onGameKeyPressed);
 			Root.theStage.addEventListener(KeyboardEvent.KEY_UP, onGameKeyReleased);
-			
+			//scenes.Level1.level1.updateSnakePos(new Point(this.x, this.y));
 		}
 		
 		private function update(eventData : Event) : void
 		{
+			//scenes.Level1.level1.updateSnakePos(new Point(this.x, this.y));
 			hitTestPlayerVsApple(scenes.Level1.apple);
 			this.x += velocity.x;
 			this.y += velocity.y;
+			currentPos = new Point(this.x, this.y);
+			
 			/*
 			frameCounter += 1;
 			
@@ -138,24 +142,28 @@
 			{
 				scenes.Level1.level1.spawnApple();
 				scenes.Level1.level1.spawnSnakePiece();
+				scenes.Level1.level1.updateSnakePos(new Point(this.x, this.y));
 				return true;
 			}
 			else if(otherCollider.hitTestPoint(bounds.right, bounds.top, true))
 			{
 				scenes.Level1.level1.spawnApple();
 				scenes.Level1.level1.spawnSnakePiece();
+				scenes.Level1.level1.updateSnakePos(new Point(this.x, this.y));
 				return true;
 			}
 			else if(otherCollider.hitTestPoint(bounds.left, bounds.bottom, true))
 			{
 				scenes.Level1.level1.spawnApple();
 				scenes.Level1.level1.spawnSnakePiece();
+				scenes.Level1.level1.updateSnakePos(new Point(this.x, this.y));
 				return true;
 			}
 			else if(otherCollider.hitTestPoint(bounds.right, bounds.bottom, true))
 			{
 				scenes.Level1.level1.spawnApple();
 				scenes.Level1.level1.spawnSnakePiece();
+				scenes.Level1.level1.updateSnakePos(new Point(this.x, this.y));
 				return true;
 			}
 			return false;

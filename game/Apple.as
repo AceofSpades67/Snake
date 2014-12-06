@@ -27,7 +27,7 @@
 		
 		public function Apple() 
 		{
-			addEventListener(Event.ADDED_TO_STAGE, init);
+			//addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
 		function init(eventData : Event):void  
