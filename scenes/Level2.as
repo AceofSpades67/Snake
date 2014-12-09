@@ -6,9 +6,15 @@
 	import game.Apple;
 	import flash.geom.Point;
 	import game.SnakeBody;
+	import flash.events.MouseEvent;
 	
 	public class Level2 extends MovieClip
 	{
+		// level 2 is broken
+		private var artLevel2 : Level2Art = null;
+		// adding game over button to end
+		private var gameOverBtn : GameOverBtn = null;
+		
 		public static var snakeHead = null;
 		public static var apple : Apple  = null;
 		
@@ -25,6 +31,15 @@
 		
 		private function awake (eventData : Event) : void
 		{
+			artLevel2 = new Level2Art();
+			this.addChild(artLevel2);
+			// adding button
+			gameOverBtn = new GameOverBtn();
+			gameOverBtn.x = 72;
+			gameOverBtn.y = 26;
+			addChild(gameOverBtn);
+			gameOverBtn.addEventListener(MouseEvent.CLICK, onGameOverClick);
+			
 			spawnApple();
 			
 			level2 = this;
@@ -35,6 +50,14 @@
 			this.addChild(snakeHead);
 			Level2.level2.spawnSnakePiece();
 			
+		}
+		
+		private function onGameOverClick(eventData : Event) : void
+		{
+			gameOverBtn.removeEventListener(MouseEvent.CLICK, onGameOverClick);
+			this.removeEventListener(Event.ADDED_TO_STAGE, awake);
+			// takes us to Game Over
+			Root.instance.loadScene("Win Scene");
 		}
 		
 		public function spawnApple() : void

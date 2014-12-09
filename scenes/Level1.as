@@ -6,9 +6,15 @@
 	import game.Apple;
 	import flash.geom.Point;
 	import game.SnakeBody;
+	import flash.events.MouseEvent;
 	
 	public class Level1 extends MovieClip
 	{
+		// adding background
+		private var artLevel1 : Level1Art = null;
+		// adding button to go to level 2
+		private var continueBtn : ContinueBtn = null;
+		
 		public static var snakeHead = null;
 		public static var apple : Apple  = null;
 		
@@ -22,7 +28,8 @@
 		public var moveNumbersDown  : int   = 1;
 		
 		public var txt   : Text;
-
+		
+		
 		public function Level1() 
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, awake);
@@ -30,6 +37,17 @@
 		
 		private function awake (eventData : Event) : void
 		{
+			// creating background
+			artLevel1 = new Level1Art();
+			addChild(artLevel1);
+			
+			// creating button
+			continueBtn = new ContinueBtn();
+			continueBtn.x = 65;
+			continueBtn.y = 375;
+			addChild(continueBtn);
+			continueBtn.addEventListener(MouseEvent.CLICK, onContinueClick);
+			
 			spawnApple();
 			
 			level1 = this;
@@ -37,7 +55,7 @@
 			txt = new Text();
 			txt.x = 20;
 			txt.y = 15;
-			addChild(txt)
+			addChild(txt);
 			
 			snakeHead = new SnakePiece();
 			snakeHead.x = stage.stageWidth / 2;
@@ -47,7 +65,13 @@
 			//Level1.level1.spawnSnakePiece();
 			//snakePosArray.push(new Point(snakeHead.x, snakeHead.y));
 			
-			
+		}
+		
+		private function onContinueClick(eventData : Event) : void
+		{
+			continueBtn.removeEventListener(MouseEvent.CLICK, onContinueClick);
+			// takes us to Level 2
+			Root.instance.loadScene("Level 2");
 		}
 		
 		private function update(eventData : Event) : void

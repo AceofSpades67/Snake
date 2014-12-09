@@ -8,6 +8,9 @@
 	{
 		private var playBtn  : PlayButton = null;
 		
+		// adding the animated intro to the scene
+		private var titleAnimation : TitleContainer = null;
+		
 		public function MainMenu() 
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, awake);
@@ -15,6 +18,10 @@
 		
 		private function awake (eventData : Event) : void
 		{
+			// creating the container to add to scene
+			titleAnimation = new TitleContainer();
+			this.addChild(titleAnimation);
+			
 			playBtn = new PlayButton();
 			playBtn.x = stage.stageWidth / 2;
 			playBtn.y = stage.stageHeight / 2;
