@@ -6,7 +6,7 @@
 	
 	public class MainMenu extends MovieClip
 	{
-		private var playBtn  : PlayButton = null;
+		private var playBtn : PlayButton = null;
 		
 		// adding the animated intro to the scene
 		private var titleAnimation : TitleContainer = null;
@@ -14,6 +14,7 @@
 		public function MainMenu() 
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, awake);
+			this.addEventListener(Event.REMOVED_FROM_STAGE, deinitialize);
 		}
 		
 		private function awake (eventData : Event) : void
@@ -31,11 +32,19 @@
 		}
 		
 		private function onPlayBtnClick(eventData : MouseEvent) : void
-		{
-			playBtn.removeEventListener(MouseEvent.CLICK, onPlayBtnClick);
-			
+		{			
 			// open the game scene.
 			Root.instance.loadScene("Level 1");
+		}
+		
+		
+		
+		private function deinitialize(eventData : Event) : void
+		{
+			this.removeEventListener(Event.ADDED_TO_STAGE, awake);
+			this.removeEventListener(Event.REMOVED_FROM_STAGE, deinitialize);
+			
+			playBtn.removeEventListener(MouseEvent.CLICK, onPlayBtnClick);
 		}
 
 	}

@@ -34,7 +34,6 @@
 		// may need EDITS for refinement to suit SNAKE
 		
 		
-
 		public function Test()
 		{
 			//creating my text field

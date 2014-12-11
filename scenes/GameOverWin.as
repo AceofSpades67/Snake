@@ -34,8 +34,6 @@
 		{
 			menuBtn.removeEventListener(MouseEvent.CLICK, onMenuBtnClick);
 			
-			trace("back to Main Menu from WIN");
-			
 			//load to desired scene from win
 			Root.instance.loadScene("Main Menu");
 		}
@@ -43,7 +41,6 @@
 		private function deinitialize(eventData : Event) : void
 		{
 			menuBtn.removeEventListener(MouseEvent.CLICK, onMenuBtnClick);
-			
 			this.removeEventListener(Event.ADDED_TO_STAGE, initialize);
 			this.removeEventListener(Event.REMOVED_FROM_STAGE, deinitialize);
 		}

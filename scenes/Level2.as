@@ -53,7 +53,7 @@
 		}
 		
 		private function onGameOverClick(eventData : Event) : void
-		{
+		{			
 			gameOverBtn.removeEventListener(MouseEvent.CLICK, onGameOverClick);
 			this.removeEventListener(Event.ADDED_TO_STAGE, awake);
 			// takes us to Game Over
@@ -64,7 +64,7 @@
 		{
 			if(apple != null)
 			{
-				this.removeChild(apple);
+				apple.parent.removeChild(apple);
 			}
 			apple     = new Apple();
 			apple.x = Math.random() * stage.stageWidth;
@@ -123,6 +123,12 @@
 		{
 			snakePosArray.push(eventData);
 			trace(snakePosArray.toString());
+		}
+		
+		private function deinitialize(eventData : Event) : void
+		{
+			apple = null;
+			this.removeEventListener(Event.ADDED_TO_STAGE, awake);
 		}
 
 	}

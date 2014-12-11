@@ -48,14 +48,14 @@
 			addChild(continueBtn);
 			continueBtn.addEventListener(MouseEvent.CLICK, onContinueClick);
 			
-			spawnApple();
-			
 			level1 = this;
 			
 			txt = new Text();
 			txt.x = 20;
 			txt.y = 15;
 			addChild(txt);
+			
+			spawnApple();
 			
 			snakeHead = new SnakePiece();
 			snakeHead.x = stage.stageWidth / 2;
@@ -86,7 +86,7 @@
 		{
 			if(apple != null)
 			{
-				this.removeChild(apple);
+				apple.parent.removeChild(apple);
 			}
 			apple     = new Apple();
 			apple.x = Math.random() * stage.stageWidth;
@@ -101,7 +101,6 @@
 			
 			//trace(numberOfPieces.toString());
 			numberOfPieces += 1;
-			
 			
 			
 			
@@ -188,6 +187,13 @@
 				moveNumbersDown -= 1;
 				trace("for");
 			}*/
+		}
+		
+		private function deinitialize(eventData : Event) : void
+		{
+			apple = null;
+			this.removeEventListener(Event.ADDED_TO_STAGE, awake);
+			removeEventListener(Event.ENTER_FRAME, update);
 		}
 
 	}
