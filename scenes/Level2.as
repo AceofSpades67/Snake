@@ -22,7 +22,10 @@
 		
 		public var snakePosArray    : Array = [];
 		public var snakePiecesArray : Array = [];
-		public var numberOfPieces   : int = 0;
+		public var numberOfPieces   : int   = -1;
+		public var lastTurnPos      : int   = 0;
+		public var numberOfUpdates  : int   = 0;
+		public var moveNumbersDown  : int   = 1;
 
 		public function Level2() 
 		{
@@ -31,6 +34,7 @@
 		
 		private function awake (eventData : Event) : void
 		{
+			Root.instance.activeScene = new String("Level"+2);
 			artLevel2 = new Level2Art();
 			this.addChild(artLevel2);
 			// adding button
@@ -48,7 +52,7 @@
 			snakeHead.x = stage.stageWidth / 2;
 			snakeHead.y = stage.stageHeight / 2;
 			this.addChild(snakeHead);
-			Level2.level2.spawnSnakePiece();
+			//Level2.level2.spawnSnakePiece();
 			
 		}
 		
@@ -86,7 +90,7 @@
 				posToSpawn = 15;
 			}
 			
-			
+			numberOfPieces += 1;
 			
 			snakePiecesArray.push(new SnakeBody());
 			
@@ -114,15 +118,15 @@
 				snakePiecesArray[numberOfPieces].x = whereToSpawn.x;
 				snakePiecesArray[numberOfPieces].y = whereToSpawn.y;
 			}
-			trace(whereToSpawn.toString());
+			//trace(whereToSpawn.toString());
 			this.addChild(snakePiecesArray[numberOfPieces]);
-			numberOfPieces += 1;
 		}
 		
 		public function updateSnakePos(eventData : Point) : void
 		{
-			snakePosArray.push(eventData);
-			trace(snakePosArray.toString());
+			moveNumbersDown = numberOfUpdates;
+			numberOfUpdates += 1;
+			snakePosArray[numberOfUpdates] = new Point(game.SnakePiece.snakePiece.x, game.SnakePiece.snakePiece.y);
 		}
 		
 		private function deinitialize(eventData : Event) : void

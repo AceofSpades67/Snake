@@ -5,6 +5,7 @@
 	import flash.events.Event;
 	import scenes.Level1;
 	import flash.geom.Point;
+	import scenes.Level2;
 	
 	
 	public class SnakeBody extends MovieClip 
@@ -27,12 +28,31 @@
 		private function awake (eventData : Event) : void
 		{
 			snakeBodyPiece = this;
-			thisPiecesPosInLine = Level1.level1.numberOfUpdates + 1;
+			if(Root.instance.activeScene == "Level1")
+			{
+				thisPiecesPosInLine = Level1.level1.numberOfUpdates + 1;
+			}
+			else if(Root.instance.activeScene == "Level2")
+			{
+				thisPiecesPosInLine = Level2.level2.numberOfUpdates + 1;
+			}
 			addEventListener(Event.ENTER_FRAME, update);
 			//trace(thisPiecesPosInLine);
 		}
 		
 		private function update(eventData : Event) : void
+		{
+			if(Root.instance.activeScene == "Level1")
+			{
+				level1MoveSnake();
+			}
+			if(Root.instance.activeScene == "Level2")
+			{
+				level2MoveSnake();
+			}
+		}
+		
+		private function level1MoveSnake()
 		{
 			if(Level1.level1.snakePosArray[thisPiecesPosInLine] != null)
 			{
@@ -78,6 +98,110 @@
 				}
 			}
 			else if(Level1.level1.snakePosArray[thisPiecesPosInLine] == null)
+			{
+				if(game.SnakePiece.snakePiece.movingLeft == true)
+				{
+					this.x -= speed;
+					movingLeft  = true;
+					movingRight = false;
+					movingDown  = false;
+					movingUp    = false;
+				}
+				if(game.SnakePiece.snakePiece.movingRight == true)
+				{
+					this.x += speed;
+					movingLeft  = false;
+					movingRight = true;
+					movingDown  = false;
+					movingUp    = false;
+				}
+				if(game.SnakePiece.snakePiece.movingDown == true)
+				{
+					this.y += speed;
+					movingLeft  = false;
+					movingRight = false;
+					movingDown  = true;
+					movingUp    = false;
+				}
+				if(game.SnakePiece.snakePiece.movingUp == true)
+				{
+					this.y -= speed;
+					movingLeft  = false;
+					movingRight = false;
+					movingDown  = false;
+					movingUp    = true;
+				}
+			}
+			
+			
+			
+				
+			/*else
+			{
+				if(game.SnakePiece.snakePiece.movingLeft == true)
+				{
+					this.x -= speed;
+				}
+				if(game.SnakePiece.snakePiece.movingRight == true)
+				{
+					this.x += speed;
+				}
+				if(game.SnakePiece.snakePiece.movingDown == true)
+				{
+					this.y -= speed;
+				}
+				if(game.SnakePiece.snakePiece.movingUp == true)
+				{
+					this.y += speed;
+				}
+			}*/
+		}
+		private function level2MoveSnake()
+		{
+			if(Level2.level2.snakePosArray[thisPiecesPosInLine] != null)
+			{
+				if(this.x > Level2.level2.snakePosArray[thisPiecesPosInLine].x)
+				{
+					//left
+					this.x -= speed;
+					movingLeft  = true;
+					movingRight = false;
+					movingDown  = false;
+					movingUp    = false;
+				}
+				if(this.x < Level2.level2.snakePosArray[thisPiecesPosInLine].x)
+				{
+					//right
+					movingLeft  = false;
+					movingRight = true;
+					movingDown  = false;
+					movingUp    = false;
+					this.x += speed;
+				}
+				if(this.y > Level2.level2.snakePosArray[thisPiecesPosInLine].y)
+				{
+					//down
+					movingLeft  = false;
+					movingRight = false;
+					movingDown  = false;
+					movingUp    = true;
+					this.y -= speed;
+				}
+				if(this.y < Level2.level2.snakePosArray[thisPiecesPosInLine].y)
+				{
+					//up
+					movingLeft  = false;
+					movingRight = false;
+					movingDown  = true;
+					movingUp    = false;
+					this.y += speed;
+				}
+				if(this.x == Level2.level2.snakePosArray[thisPiecesPosInLine].x && this.y == Level2.level2.snakePosArray[thisPiecesPosInLine].y)
+				{
+					thisPiecesPosInLine += 1;
+				}
+			}
+			else if(Level2.level2.snakePosArray[thisPiecesPosInLine] == null)
 			{
 				if(game.SnakePiece.snakePiece.movingLeft == true)
 				{

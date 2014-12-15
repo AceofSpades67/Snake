@@ -19,7 +19,7 @@
 		public var currentScene : MovieClip  = null;
 		
 		public var score : int = 0;
-		
+		public var activeScene = null;
 		
 		public function Root()
 		{

@@ -37,6 +37,7 @@
 		
 		private function awake (eventData : Event) : void
 		{
+			Root.instance.activeScene = new String("Level"+1); 
 			// creating background
 			artLevel1 = new Level1Art();
 			addChild(artLevel1);
