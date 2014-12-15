@@ -127,6 +127,7 @@
 			moveNumbersDown = numberOfUpdates;
 			numberOfUpdates += 1;
 			snakePosArray[numberOfUpdates] = new Point(game.SnakePiece.snakePiece.x, game.SnakePiece.snakePiece.y);
+			trace(snakePosArray);
 		}
 		
 		private function deinitialize(eventData : Event) : void

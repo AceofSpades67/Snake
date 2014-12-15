@@ -69,46 +69,74 @@
 			switch(eventData.keyCode)
 			{
 				case Keyboard.LEFT :
-				if(velocity.x != speed)
+				if(velocity.x != speed && velocity.x != -speed)
 				{
 					movingLeft  = true;
 					movingRight = false;
 					movingDown  = false;
 					movingUp    = false;
-					scenes.Level1.level1.updateSnakePos(new Point(this.x, this.y));
+					if(Root.instance.activeScene == "Level1")
+					{
+						scenes.Level1.level1.updateSnakePos(new Point(this.x, this.y));
+					}
+					else if(Root.instance.activeScene == "Level2")
+					{
+						scenes.Level2.level2.updateSnakePos(new Point(this.x, this.y));
+					}
 					velocity = new Point(-speed, 0);
 				}
 					break;
 				case Keyboard.RIGHT :
-				if(velocity.x != -speed)
+				if(velocity.x != -speed && velocity.x != speed)
 				{
 					movingLeft  = false;
 					movingRight = true;
 					movingDown  = false;
 					movingUp    = false;
-					scenes.Level1.level1.updateSnakePos(new Point(this.x, this.y));
+					if(Root.instance.activeScene == "Level1")
+					{
+						scenes.Level1.level1.updateSnakePos(new Point(this.x, this.y));
+					}
+					else if(Root.instance.activeScene == "Level2")
+					{
+						scenes.Level2.level2.updateSnakePos(new Point(this.x, this.y));
+					}
 					velocity = new Point(speed, 0);
 				}
 					break;
 				case Keyboard.UP :
-				if(velocity.y != speed)
+				if(velocity.y != speed && velocity.y != -speed)
 				{
 					movingLeft  = false;
 					movingRight = false;
 					movingDown  = false;
 					movingUp    = true;
-					scenes.Level1.level1.updateSnakePos(new Point(this.x, this.y));
+					if(Root.instance.activeScene == "Level1")
+					{
+						scenes.Level1.level1.updateSnakePos(new Point(this.x, this.y));
+					}
+					else if(Root.instance.activeScene == "Level2")
+					{
+						scenes.Level2.level2.updateSnakePos(new Point(this.x, this.y));
+					}
 					velocity = new Point(0, -speed);
 				}
 					break;
 				case Keyboard.DOWN :
-				if(velocity.y != -speed)
+				if(velocity.y != -speed && velocity.y != speed)
 				{
 					movingLeft  = false;
 					movingRight = false;
 					movingDown  = true;
 					movingUp    = false;
-					scenes.Level1.level1.updateSnakePos(new Point(this.x, this.y));
+					if(Root.instance.activeScene == "Level1")
+					{
+						scenes.Level1.level1.updateSnakePos(new Point(this.x, this.y));
+					}
+					else if(Root.instance.activeScene == "Level2")
+					{
+						scenes.Level2.level2.updateSnakePos(new Point(this.x, this.y));
+					}
 					velocity = new Point(0, speed);
 				}
 					break;
