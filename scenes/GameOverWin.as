@@ -18,8 +18,8 @@
 		private function initialize(eventData : Event) : void
 		{
 			var winArt = new GameOverW();
-			winArt.x = stage.stageWidth / 2;
-			winArt.y = stage.stageHeight / 4;
+			winArt.x = 0;
+			winArt.y = 0;
 			this.addChild(winArt);
 			
 			menuBtn = new MainMenuButton();
