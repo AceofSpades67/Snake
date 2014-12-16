@@ -34,6 +34,7 @@
 		
 		private function awake (eventData : Event) : void
 		{
+			stage.focus = stage;
 			Root.instance.activeScene = new String("Level"+2);
 			artLevel2 = new Level2Art();
 			this.addChild(artLevel2);
