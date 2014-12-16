@@ -155,16 +155,16 @@
 		public function spawnEnemy() : void
 		{
 			
-			if(enemy != null)
+			/*if(enemy != null)
 			{
 				enemy.parent.removeChild(enemy);
 			}
 			enemy     = new Enemy();
 			enemy.x = 100;
 			enemy.y = 100;
-			this.addChild(enemy);
+			this.addChild(enemy);*/
 			
-			/*if(enemy == null)
+			if(enemy == null)
 			{
 				//enemy.parent.removeChild(enemy);
 				enemy   = new Enemy();
@@ -213,7 +213,7 @@
 				enemy.y = Math.random() * stage.stageHeight;
 				this.addChild(enemy);
 				numberOfEnemies += 1;
-			}*/
+			}
 			
 		}
 		
@@ -268,7 +268,7 @@
 			moveNumbersDown = numberOfUpdates;
 			numberOfUpdates += 1;
 			snakePosArray[numberOfUpdates] = new Point(game.SnakePiece.snakePiece.x, game.SnakePiece.snakePiece.y);
-			trace(snakePosArray);
+			//trace(snakePosArray);
 		}
 		
 		private function deinitialize() : void

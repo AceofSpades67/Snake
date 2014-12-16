@@ -27,7 +27,7 @@
 		
 		private function update(eventData : Event) : void
 		{
-			this.rotation = 10;
+			this.rotation += speed;
 			if(this.x == startPos.x)
 			{
 				this.x += speed;
