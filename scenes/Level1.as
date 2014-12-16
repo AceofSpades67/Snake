@@ -72,16 +72,27 @@
 		private function onContinueClick(eventData : Event) : void
 		{
 			continueBtn.removeEventListener(MouseEvent.CLICK, onContinueClick);
+			deinitialize();
 			// takes us to Level 2
 			Root.instance.loadScene("Level 2");
 		}
 		
 		private function update(eventData : Event) : void
 		{
+			winCondition();
 			while(snakePosArray[lastTurnPos] != null)
 				{
 					lastTurnPos += 1;
 				}
+		}
+		
+		private function winCondition()
+		{
+			if(Root.instance.score == 150)
+			{
+				deinitialize();
+				Root.instance.loadScene("Level 2");
+			}
 		}
 		
 		public function spawnApple() : void
@@ -191,11 +202,12 @@
 			}*/
 		}
 		
-		private function deinitialize(eventData : Event) : void
+		private function deinitialize() : void
 		{
 			apple = null;
 			this.removeEventListener(Event.ADDED_TO_STAGE, awake);
-			removeEventListener(Event.ENTER_FRAME, update);
+			this.removeEventListener(Event.ENTER_FRAME, update);
+			game.SnakePiece.snakePiece.deinitialize();
 		}
 
 	}

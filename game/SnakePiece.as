@@ -315,6 +315,14 @@
 			}
 			return false;
 		}
+		
+		public function deinitialize() : void
+		{
+			this.removeEventListener(Event.ENTER_FRAME, update);
+			Root.theStage.removeEventListener(KeyboardEvent.KEY_DOWN, onGameKeyPressed);
+			Root.theStage.removeEventListener(KeyboardEvent.KEY_UP, onGameKeyReleased);
+			this.removeEventListener(Event.ADDED_TO_STAGE, awake);
+		}
 	}
 	
 }
