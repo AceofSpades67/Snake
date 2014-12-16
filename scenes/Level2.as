@@ -7,11 +7,20 @@
 	import flash.geom.Point;
 	import game.SnakeBody;
 	import flash.events.MouseEvent;
+	import flash.geom.Rectangle;
 	
 	public class Level2 extends MovieClip
 	{
 		// level 2 is broken
 		private var artLevel2 : Level2Art = null;
+		
+		/* didn't work...
+		// adding collision
+		public var collisionLevel2 : CollisionsLevel2 = null;
+		// to activate level 3 or win scene
+		private var goalWinBtn : WinBtn = null;
+		// what's keeping it from working?! */
+		
 		// adding game over button to end
 		private var gameOverBtn : GameOverBtn = null;
 		
@@ -30,6 +39,7 @@
 		public function Level2() 
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, awake);
+			this.addEventListener(Event.REMOVED_FROM_STAGE, deinitialize);
 		}
 		
 		private function awake (eventData : Event) : void
@@ -38,6 +48,23 @@
 			Root.instance.activeScene = new String("Level"+2);
 			artLevel2 = new Level2Art();
 			this.addChild(artLevel2);
+			
+			
+			// adding collision
+			/* fail
+			collisionLevel2 = new CollisionsLevel2();
+			collisionLevel2.x = 278;
+			collisionLevel2.y = 199;
+			this.addChild(collisionLevel2);
+			
+			// how to??? put this goal in a timer to pair with 10, 9, 8... countdown
+			// or create private timer and do automatic scene switch to level 3?
+			goalWinBtn = new WinBtn();
+			goalWinBtn.x = stage.stageWidth / 2;
+			goalWinBtn.y = stage.stageHeight / 2;
+			this.addChild(goalWinBtn);
+			// failed */
+			
 			// adding button
 			gameOverBtn = new GameOverBtn();
 			gameOverBtn.x = 72;
@@ -56,6 +83,36 @@
 			//Level2.level2.spawnSnakePiece();
 			
 		}
+		
+		// working on collision
+		/* FAIL
+		public function hitTestCollision(object : MovieClip) : Boolean
+		{
+			return hitCheck(object, this.collisionLevel2);
+			trace("hitCheck");
+		}
+		
+		public function hitTestGoal(object : MovieClip) : Boolean
+		{
+			return hitCheck(object, this.goalWinBtn);
+		}
+		
+		private function hitCheck(SnakePiece : MovieClip, object2 : MovieClip) : Boolean
+		{
+			var bounds : Rectangle = SnakePiece.getBounds(root);
+			
+			if(object2.hitTestPoint(bounds.left, bounds.top, true))
+				return true;
+			else if(object2.hitTestPoint(bounds.right, bounds.top, true))
+				return true;
+			else if(object2.hitTestPoint(bounds.right, bounds.bottom, true))
+				return true;
+			else if(object2.hitTestPoint(bounds.left, bounds.bottom, true))
+				return true;
+			
+			return false;
+		} */
+		
 		
 		private function onGameOverClick(eventData : Event) : void
 		{			
@@ -135,6 +192,7 @@
 		{
 			apple = null;
 			this.removeEventListener(Event.ADDED_TO_STAGE, awake);
+			this.removeEventListener(Event.REMOVED_FROM_STAGE, deinitialize);
 		}
 
 	}
