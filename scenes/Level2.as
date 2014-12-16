@@ -6,6 +6,7 @@
 	import game.Apple;
 	import flash.geom.Point;
 	import game.SnakeBody;
+	import game.Enemy;
 	import flash.events.MouseEvent;
 	import flash.geom.Rectangle;
 	
@@ -24,8 +25,9 @@
 		// adding game over button to end
 		private var gameOverBtn : GameOverBtn = null;
 		
-		public static var snakeHead = null;
+		public static var snakeHead      = null;
 		public static var apple : Apple  = null;
+		public static var enemy : Enemy  = null;
 		
 		public static var level2 = null;
 		
@@ -35,6 +37,7 @@
 		public var lastTurnPos      : int   = 0;
 		public var numberOfUpdates  : int   = 0;
 		public var moveNumbersDown  : int   = 1;
+		public var numberOfEnemies  : int   = 0;
 
 		public function Level2() 
 		{
@@ -48,7 +51,7 @@
 			Root.instance.activeScene = new String("Level"+2);
 			artLevel2 = new Level2Art();
 			this.addChild(artLevel2);
-			
+			addEventListener(Event.ENTER_FRAME, update);
 			
 			// adding collision
 			/* fail
@@ -82,6 +85,21 @@
 			this.addChild(snakeHead);
 			//Level2.level2.spawnSnakePiece();
 			
+		}
+		
+		private function update(eventData : Event) : void
+		{
+			winCondition();
+			spawnEnemy();
+		}
+		
+		private function winCondition()
+		{
+			if(Root.instance.score == 300)
+			{
+				deinitialize();
+				Root.instance.loadScene("Level 3");
+			}
 		}
 		
 		// working on collision
@@ -132,6 +150,71 @@
 			apple.x = Math.random() * stage.stageWidth;
 			apple.y = Math.random() * stage.stageHeight;
 			this.addChild(apple);
+		}
+		
+		public function spawnEnemy() : void
+		{
+			
+			if(enemy != null)
+			{
+				enemy.parent.removeChild(enemy);
+			}
+			enemy     = new Enemy();
+			enemy.x = 100;
+			enemy.y = 100;
+			this.addChild(enemy);
+			
+			/*if(enemy == null)
+			{
+				//enemy.parent.removeChild(enemy);
+				enemy   = new Enemy();
+				enemy.x = 75;
+				enemy.y = 75;
+				//enemy.x = Math.random() * stage.stageWidth;
+				//enemy.y = Math.random() * stage.stageHeight;
+				this.addChild(enemy);
+			}
+			if(Root.instance.score == 20 && numberOfEnemies == 1)
+			{
+				enemy   = new Enemy();
+				enemy.x = Math.random() * stage.stageWidth;
+				enemy.y = Math.random() * stage.stageHeight;
+				this.addChild(enemy);
+				numberOfEnemies += 1;
+			}
+			if(Root.instance.score == 40 && numberOfEnemies == 2)
+			{
+				enemy   = new Enemy();
+				enemy.x = Math.random() * stage.stageWidth;
+				enemy.y = Math.random() * stage.stageHeight;
+				this.addChild(enemy);
+				numberOfEnemies += 1;
+			}
+			if(Root.instance.score == 60 && numberOfEnemies == 3)
+			{
+				enemy   = new Enemy();
+				enemy.x = Math.random() * stage.stageWidth;
+				enemy.y = Math.random() * stage.stageHeight;
+				this.addChild(enemy);
+				numberOfEnemies += 1;
+			}
+			if(Root.instance.score == 80 && numberOfEnemies == 4)
+			{
+				enemy   = new Enemy();
+				enemy.x = Math.random() * stage.stageWidth;
+				enemy.y = Math.random() * stage.stageHeight;
+				this.addChild(enemy);
+				numberOfEnemies += 1;
+			}
+			if(Root.instance.score == 100 && numberOfEnemies == 5)
+			{
+				enemy   = new Enemy();
+				enemy.x = Math.random() * stage.stageWidth;
+				enemy.y = Math.random() * stage.stageHeight;
+				this.addChild(enemy);
+				numberOfEnemies += 1;
+			}*/
+			
 		}
 		
 		public function spawnSnakePiece() : void
@@ -188,11 +271,12 @@
 			trace(snakePosArray);
 		}
 		
-		private function deinitialize(eventData : Event) : void
+		private function deinitialize() : void
 		{
 			apple = null;
 			this.removeEventListener(Event.ADDED_TO_STAGE, awake);
-			this.removeEventListener(Event.REMOVED_FROM_STAGE, deinitialize);
+			this.removeEventListener(Event.ENTER_FRAME, update);
+			game.SnakePiece.snakePiece.deinitialize();
 		}
 
 	}

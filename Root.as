@@ -42,9 +42,10 @@
 
 		public function addScore():void
 		{
+			
 			//adding 10 to score
 			score += 10;
-
+			trace(score);
 			//setting the txt text field to score
 			Level1.level1.txt.text = score.toString();
 		}
