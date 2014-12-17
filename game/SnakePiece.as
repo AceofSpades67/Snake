@@ -6,6 +6,8 @@
 	import flash.events.KeyboardEvent;
 	import flash.geom.Point;
 	import scenes.Level1;
+	import scenes.Level2;
+	import scenes.Level3;
 	import flash.ui.Keyboard;
 	import flash.display.DisplayObject;
 	import flash.geom.Rectangle;
@@ -48,6 +50,10 @@
 			{
 				hitTestPlayerVsApple(scenes.Level2.apple);
 			}
+			/*else if(Root.instance.activeScene == "Level3")
+			{
+				hitTestPlayerVsApple(scenes.Level3.apple);
+			}*/
 			this.x += velocity.x;
 			this.y += velocity.y;
 			currentPos = new Point(this.x, this.y);

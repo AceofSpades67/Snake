@@ -137,7 +137,7 @@
 			gameOverBtn.removeEventListener(MouseEvent.CLICK, onGameOverClick);
 			this.removeEventListener(Event.ADDED_TO_STAGE, awake);
 			// takes us to Game Over
-			Root.instance.loadScene("Win Scene");
+			Root.instance.loadScene("Level 3");
 		}
 		
 		public function spawnApple() : void

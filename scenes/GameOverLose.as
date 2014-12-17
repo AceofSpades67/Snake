@@ -17,10 +17,10 @@
 		
 		private function initialize(eventData : Event) : void
 		{
-			var loseArt = new GameOverL();
-			loseArt.x = stage.stageWidth / 2;
-			loseArt.y = stage.stageHeight / 4;
-			this.addChild(loseArt);
+			//var loseArt = new GameOverL();
+			//loseArt.x = stage.stageWidth / 2;
+			//loseArt.y = stage.stageHeight / 4;
+			//this.addChild(loseArt);
 			
 			menuBtn = new MainMenuButton();
 			menuBtn.x = stage.stageWidth / 2;
